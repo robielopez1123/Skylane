@@ -1,0 +1,47 @@
+<ion-view view-title="Schedule Flight">
+  <ion-content>
+
+    <br>
+    <h4 class="text-center">S K Y  L A N E</h4>
+    <br>
+
+    <form name="formLogin" novalidate="" ng-submit="loginCtrl.loginWithEmail(formLogin)">
+      <ion-list>
+        <label class="item item-input item-floating-label"
+               ng-class="{'has-errors' : formLogin.email.$invalid, 'no-errors' : formLogin.email.$valid}">
+          <span class="input-label">E-mail address</span>
+          <input type="text" name="email" placeholder="E-mail address" ng-model="loginCtrl.email" required>
+        </label>
+        <div class="error-container" ng-show="formLogin.email.$error" ng-messages="formLogin.email.$error">
+          <div ng-messages-include="templates/validation/error-messages.html"></div>
+        </div>
+
+        <label class="item item-input item-floating-label"
+               ng-class="{'has-errors' : formLogin.password.$invalid && formLogin.$submitted, 'no-errors' : formLogin.password.$valid && formLogin.$submitted}">
+          <span class="input-label">Password</span>
+          <input type="password" name="password" placeholder="Password" ng-model="loginCtrl.password" required>
+        </label>
+        <div class="error-container last-error-container" ng-show="formLogin.password.$error"
+             ng-messages="formLogin.password.$error">
+          <div ng-messages-include="templates/validation/error-messages.html"></div>
+        </div>
+
+        <button type="submit" class="item button button-block button-balanced">Login</button>
+        <br>
+        <button class="item button button-block button-positive" ng-click="loginCtrl.loginWithFacebook()">Login With
+          Facebook
+        </button>
+
+        <button class="item button button-block button-calm" ng-click="loginCtrl.loginWithTwitter()">Login With Twitter
+        </button>
+
+        <div class="item row">
+          <a class="col col-33" ui-sref="app.forget">Forgot Password ?</a>
+          <a class="col col-33 col-offset-33" ui-sref="app.signup">Or Sign Up</a>
+        </div>
+
+      </ion-list>
+    </form>
+  </ion-content>
+</ion-view>
+

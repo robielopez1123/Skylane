@@ -1,0 +1,60 @@
+  <html>
+  <head>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	  <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Flight Schduler</title>
+        <link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'/>
+        <link rel="stylesheet" href="main.css"/> 
+		  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrI6myTKLyjQGwPJmD_5H9txcW84GUVHg&libraries=places"></script>
+		  <script type="text/javascript" src="/www/js/autoComplete.js"></script>
+		  <script type="text/javascript" src="/www/js/slideUpDown.js"></script>
+  
+    </head>
+    <body>
+
+      <form action="index.html" method="post">
+      
+        <h1>Schedule Flight</h1>
+        
+        <fieldset>
+		  <label for="returnTrip">Return Trip</label>
+		  <input class="yes" type="radio" id="returnTrip" name="return_trip" value="yes" checked="checked">Yes
+		  <input class="no" type="radio" id="returnTrip" name="return_trip" value="no">No
+		
+          <label for="departureDate">Departure Date:</label>
+          <input type="date" id="departureDate" name="departure_date" required>
+          
+		  <div class="return">
+          <label for="returnDate">Return Date:</label>
+          <input type="date" id="returnDate" name="return_date">
+		  </div>
+          
+          <label for="departure">Departure City</label>
+          <input type="text" id="departure" name="depart" required>
+          
+          <label for="destination">Destination</label>
+          <input type="text" id="destination" name="dest" required>
+		  
+		  <label for="seats">Number of Seats</label>
+		  <input type="number" id="seats" name="no_of_seats" min="1" max="8" required>
+		  
+			<label for="personType">Type of Passenger</label>
+			<input class="passenger" type="radio" id="personType" name="person_type" value="passenger" checked="checked">Passenger
+		  <input class="pilot" type="radio" id="personType" name="person_type" value="pilot">Pilot
+		  
+		  <div class="price">
+		  <label for="pricePerSeat">Price per Seat</label>
+		  <input type="number" id="pricePerSeat" name="price_per_seat">
+		  </div>
+        </fieldset>
+        
+        <button id="btn" type="submit">Submit</button>
+      </form>
+	  
+	   <script type="text/javascript" src="/www/js/firebase.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,42 @@
+<ion-view view-title="Sign up">
+  <ion-content>
+    <ion-list>
+      <br>
+      <h4 class="text-center">Sign up to Schedule Flight</h4>
+      <br>
+
+      <form name="signupForm" novalidate="" ng-submit="signUpCtrl.singUp(signupForm)">
+        <label class="item item-input item-floating-label"
+               ng-class="{'has-errors' : signupForm.email.$invalid, 'no-errors' : signupForm.email.$valid}">
+          <span class="input-label">E-mail address</span>
+          <input type="text" name="email" placeholder="E-mail address" ng-model="signUpCtrl.email" required>
+        </label>
+        <div class="error-container" ng-show="signupForm.email.$error" ng-messages="signupForm.email.$error">
+          <div ng-messages-include="templates/validation/error-messages.html"></div>
+        </div>
+
+        <label class="item item-input item-floating-label"
+               ng-class="{'has-errors' : signupForm.password.$invalid, 'no-errors' : signupForm.password.$valid}">
+          <span class="input-label">Password</span>
+          <input type="password" name="password" placeholder="Password" ng-model="signUpCtrl.password" required>
+        </label>
+        <div class="error-container" ng-show="signupForm.password.$error" ng-messages="signupForm.password.$error">
+          <div ng-messages-include="templates/validation/error-messages.html"></div>
+        </div>
+
+        <label class="item item-input item-floating-label"
+               ng-class="{'has-errors' : signupForm.confirmPassword.$invalid, 'no-errors' : signupForm.confirmPassword.$valid}">
+          <span class="input-label">Confirm Password</span>
+          <input type="password" name="confirmPassword" placeholder="Confirm Password" ng-model="signUpCtrl.confirmPassword" required
+                 ng-pattern="\b{{signUpCtrl.password}}\b">
+        </label>
+        <div class="error-container" ng-show="signupForm.confirmPassword.$error" ng-messages="signupForm.confirmPassword.$error">
+          <div ng-messages-include="templates/validation/error-messages.html"></div>
+        </div>
+
+        <button class="item button button-block button-calm">Sign Up</button>
+      </form>
+
+    </ion-list>
+  </ion-content>
+</ion-view>

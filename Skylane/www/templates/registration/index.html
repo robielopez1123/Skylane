@@ -1,0 +1,88 @@
+<ion-view view-title="Schedule Flight" hide-back-button="true">
+  <ion-content delegate-handle="mainScroll">
+    <form name="registrationForm" novalidate="" ng-submit="registrationCtrl.submitRegistration(registrationForm)">
+      <ion-list>
+        <div class="item item-toggle">
+          Return Trip
+          <label class="toggle toggle-positive">
+            <input type="checkbox" ng-model="registrationCtrl.hasReturnTrip">
+            <div class="track">
+              <div class="handle"></div>
+            </div>
+          </label>
+        </div>
+
+        <label class="item item-input item-stacked-label"
+               ng-class="{'has-errors' : registrationForm.departureDate.$invalid, 'no-errors' : registrationForm.departureDate.$valid}">
+          <span class="input-label">Departure Date:</span>
+          <input type="date" name="departureDate" placeholder="jj/mm/aaaa" ng-model="registrationCtrl.departureDate" required>
+        </label>
+        <div class="error-container" ng-show="registrationForm.departureDate.$error" ng-messages="registrationForm.departureDate.$error">
+          <div ng-messages-include="templates/validation/error-messages.html"></div>
+        </div>
+
+        <label class="item item-input item-stacked-label item-animate" ng-show="registrationCtrl.hasReturnTrip"
+               ng-class="{'has-errors' : registrationForm.returnDate.$invalid, 'no-errors' : registrationForm.returnDate.$valid}">
+          <span class="input-label">Return Date:</span>
+          <input type="date" name="returnDate" placeholder="jj/mm/aaaa" ng-model="registrationCtrl.returnDate"
+                 ng-required="registrationCtrl.hasReturnTrip">
+        </label>
+        <div class="error-container" ng-show="registrationForm.returnDate.$error" ng-messages="registrationForm.returnDate.$error">
+          <div ng-messages-include="templates/validation/error-messages.html"></div>
+        </div>
+
+        <label class="item item-input item-stacked-label"
+               ng-class="{'has-errors' : registrationForm.departureCity.$invalid, 'no-errors' : registrationForm.departureCity.$valid}">
+          <span class="input-label">Departure City</span>
+          <ion-google-place radius="1500000" name="departureCity" placeholder="Specify a location" ng-model="registrationCtrl.departureCity" required/>
+          <!--<input auto-complete-city type="text" placeholder="Specify a location"-->
+        </label>
+        <div class="error-container" ng-show="registrationForm.departureCity.$error" ng-messages="registrationForm.departureCity.$error">
+          <div ng-messages-include="templates/validation/error-messages.html"></div>
+        </div>
+
+        <label class="item item-input item-stacked-label"
+               ng-class="{'has-errors' : registrationForm.destination.$invalid, 'no-errors' : registrationForm.destination.$valid}">
+          <span class="input-label">Destination</span>
+          <ion-google-place radius="1500000" name="destination" placeholder="Specify a location" ng-model="registrationCtrl.destination" required/>
+          <!--location-changed="registrationCtrl.updateLocationModel()"/>-->
+        </label>
+        <div class="error-container" ng-show="registrationForm.destination.$error" ng-messages="registrationForm.destination.$error">
+          <div ng-messages-include="templates/validation/error-messages.html"></div>
+        </div>
+
+        <label class="item item-input item-stacked-label"
+               ng-class="{'has-errors' : registrationForm.numberSeats.$invalid, 'no-errors' : registrationForm.numberSeats.$valid}">
+          <span class="input-label">Number of Seats</span>
+          <input type="number" name="numberSeats" ng-model="registrationCtrl.numberSeats" required>
+        </label>
+        <div class="error-container" ng-show="registrationForm.numberSeats.$error" ng-messages="registrationForm.numberSeats.$error">
+          <div ng-messages-include="templates/validation/error-messages.html"></div>
+        </div>
+
+        <label class="item">
+          <span class="padding">Are You a Pilot or Passenger</span>
+          <div class="button-bar padding">
+            <a grouped-radio="'passenger'" ng-model="registrationCtrl.typePassenger" ng-mouseup="registrationCtrl.scrollBottom()">Pilot</a>
+            <a grouped-radio="'pilot'" ng-model="registrationCtrl.typePassenger">Passenger</a>
+          </div>
+        </label>
+
+        <label class="item item-input item-stacked-label item-animate" ng-show="registrationCtrl.typePassenger === 'passenger'"
+               ng-class="{'has-errors' : registrationForm.pricePerSeat.$invalid, 'no-errors' : registrationForm.pricePerSeat.$valid}">
+          <span class="input-label">Price per Seat</span>
+          <input type="number" name="pricePerSeat" ng-model="registrationCtrl.pricePerSeat"
+                 ng-required="registrationCtrl.typePassenger === 'passenger'">
+        </label>
+        <div class="error-container" ng-show="registrationForm.pricePerSeat.$error" ng-messages="registrationForm.pricePerSeat.$error">
+          <div ng-messages-include="templates/validation/error-messages.html"></div>
+        </div>
+
+        <button type="submit" class="item button button-block button-balanced">
+          Submit
+        </button>
+
+      </ion-list>
+    </form>
+  </ion-content>
+</ion-view>

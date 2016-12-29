@@ -1,0 +1,61 @@
+<ion-view view-title="Forgot your Password ?">
+  <ion-content>
+    <ion-list>
+
+      <br>
+      <h4 class="text-center">Get a temporary password then change it.</h4>
+      <br>
+
+      <form name="resetPasswordForm" novalidate="" ng-submit="forgetCtrl.setNewPassword(resetPasswordForm)">
+        <label class="item item-input item-floating-label"
+               ng-class="{'has-errors' : resetPasswordForm.email.$invalid, 'no-errors' : resetPasswordForm.email.$valid}">
+          <span class="input-label">E-mail address</span>
+          <input type="text" name="email" placeholder="E-mail address" ng-model="forgetCtrl.email" required>
+        </label>
+        <div class="error-container" ng-show="resetPasswordForm.email.$error" ng-messages="resetPasswordForm.email.$error">
+          <div ng-messages-include="templates/validation/error-messages.html"></div>
+        </div>
+
+        <button class="item button button-block button-calm" ng-click="forgetCtrl.sendTempPasswordToEmail(resetPasswordForm)">
+          Send temporary Password to my E-mail
+        </button>
+
+        <div ng-show="forgetCtrl.tempPasswordEmailSent">
+          <h4 class="item-multi-line">A temporary password is just sent to your e-mail. Use it to set a new one.</h4>
+          <label class="item item-input item-floating-label"
+                 ng-class="{'has-errors' : resetPasswordForm.tempPassword.$invalid, 'no-errors' : resetPasswordForm.tempPassword.$valid}">
+            <span class="input-label">Temporary Password</span>
+            <input type="password" name="tempPassword" placeholder="Temporary Password" ng-model="forgetCtrl.tempPassword" required>
+          </label>
+          <div class="error-container" ng-show="resetPasswordForm.tempPassword.$error" ng-messages="resetPasswordForm.tempPassword.$error">
+            <div ng-messages-include="templates/validation/error-messages.html"></div>
+          </div>
+
+          <label class="item item-input item-floating-label"
+                 ng-class="{'has-errors' : resetPasswordForm.newPassword.$invalid, 'no-errors' : resetPasswordForm.newPassword.$valid}">
+            <span class="input-label">New Password</span>
+            <input type="password" name="newPassword" placeholder="New Password" ng-model="forgetCtrl.newPassword" required>
+          </label>
+          <div class="error-container" ng-show="resetPasswordForm.newPassword.$error" ng-messages="resetPasswordForm.newPassword.$error">
+            <div ng-messages-include="templates/validation/error-messages.html"></div>
+          </div>
+
+          <label class="item item-input item-floating-label"
+                 ng-class="{'has-errors' : resetPasswordForm.confirmNewPassword.$invalid, 'no-errors' : resetPasswordForm.confirmNewPassword.$valid}">
+            <span class="input-label">Confirm New Password</span>
+            <input type="password" name="confirmNewPassword" placeholder="Confirm New Password" ng-model="forgetCtrl.conformNewPassword" required
+                   ng-pattern="\b{{forgetCtrl.newPassword}}\b">
+          </label>
+          <div class="error-container" ng-show="resetPasswordForm.confirmNewPassword.$error" ng-messages="resetPasswordForm.confirmNewPassword.$error">
+            <div ng-messages-include="templates/validation/error-messages.html"></div>
+          </div>
+
+          <button type="submit" class="item button button-block button-positive">
+            Set my new Password
+          </button>
+
+        </div>
+      </form>
+    </ion-list>
+  </ion-content>
+</ion-view>
